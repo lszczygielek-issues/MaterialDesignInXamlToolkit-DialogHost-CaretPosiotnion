@@ -1,0 +1,122 @@
+﻿<Window x:Class="MaterialDesignInXamlToolkit_DialogHost_Focus.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MaterialDesignInXamlToolkit_DialogHost_Focus"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:DialogHost Name="OnLostFocusExample"
+                                   Grid.Column="0"
+                                   Margin="3"
+                                   Identifier="OnLostFocusExample">
+            <materialDesign:DialogHost.DialogContentTemplate>
+                <DataTemplate DataType="{x:Type local:ViewModel}">
+                    <StackPanel>
+                        <TextBox Margin="5"
+                                 Text="{Binding LastInput}"/>
+                        <Button Margin="1"
+                                IsCancel="True"
+                                Content="Cancel"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean>False</system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Margin="1"
+                                IsDefault="True"
+                                Content="OK"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean>True</system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </materialDesign:DialogHost.DialogContentTemplate>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <DockPanel>
+                    <TextBlock Margin="0,0,10,0"
+                               Style="{StaticResource MaterialDesignTextBlock}">OnLostFocusExample - User input is:</TextBlock>
+                    <TextBlock Text="{Binding LastInput}"
+                               Style="{StaticResource MaterialDesignTextBlock}"/>
+                </DockPanel>
+
+                <Button Grid.Row="1"
+                        Click="OnLostFocusExampleButton_Click">Change user input</Button>
+            </Grid>
+        </materialDesign:DialogHost>
+
+        <materialDesign:DialogHost Name="OnPropertyChangedExample"
+                                   Grid.Column="1"
+                                   Margin="3"
+                                   Identifier="OnPropertyChangedExample">
+            <materialDesign:DialogHost.DialogContentTemplate>
+                <DataTemplate DataType="{x:Type local:ViewModel}">
+                    <StackPanel>
+                        <TextBox Margin="5"
+                                 Text="{Binding LastInput, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Margin="1"
+                                IsCancel="True"
+                                Content="Cancel"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean>False</system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Margin="1"
+                                IsDefault="True"
+                                Content="OK"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button.CommandParameter>
+                                <system:Boolean>True</system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </materialDesign:DialogHost.DialogContentTemplate>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <DockPanel>
+                    <TextBlock Margin="0,0,10,0"
+                               Style="{StaticResource MaterialDesignTextBlock}">OnPropertyChangedExample - User input is:</TextBlock>
+                    <TextBlock Text="{Binding LastInput}"
+                               Style="{StaticResource MaterialDesignTextBlock}"/>
+                </DockPanel>
+
+                <Button Grid.Row="1"
+                        Click="OnPropertyChangedExampleButton_Click">Change user input</Button>
+            </Grid>
+        </materialDesign:DialogHost>
+    </Grid>
+</Window>
